@@ -78,3 +78,35 @@ console.log(calculateCircumference); // [50.24, 56.52, 12.56, 9.42, 169.65]
 
 const calculateDiameter = calculate(radius, "diameter");
 console.log(calculateDiameter); // [16, 18, 4, 3, 54]
+
+// Q | Refactor using higher order function and map
+
+function areaDiameterCircumference(radius, type) {
+  const PI = 3.14159;
+
+  switch (type.toLowerCase()) {
+    case "area":
+      return PI * radius * radius;
+    case "diameter":
+      return 2 * radius;
+    case "circumference":
+      return 2 * PI * radius;
+    default:
+      return 'Invalid type. Please provide "area", "diameter", or "circumference".';
+  }
+}
+
+function calculate(radiusArray, type) {
+  return radiusArray.map((radius) => areaDiameterCircumference(radius, type));
+}
+
+const calculateArea = calculate(radius, "area");
+console.log(calculateArea); // [201.06, 254.34, 12.56, 7.065, 2290.22]
+
+// Similarly, we can calculate circumference and diameter
+
+const calculateCircumference = calculate(radius, "circumference");
+console.log(calculateCircumference); // [50.24, 56.52, 12.56, 9.42, 169.65]
+
+const calculateDiameter = calculate(radius, "diameter");
+console.log(calculateDiameter); // [16, 18, 4, 3, 54]
